@@ -9,11 +9,31 @@ class App extends Component {
     super();
     this.state = {
       starwarsChars: [],
+      page: 1,
     };
   }
 
   componentDidMount() {
     this.getCharacters('https://swapi.co/api/people/');
+  }
+
+  next = () => {
+    let i = this.state.page;
+    i++;
+    this.getCharacters(`https://swapi.co/api/people/?page=${i}`);
+    this.setState ({ page: i });
+  }
+
+  previous = () => {
+    let i = this.state.page;
+    if (i === 1) {
+      this.setState ({ page: 1 });
+    }
+    else {
+      i--;
+    this.getCharacters(`https://swapi.co/api/people/?page=${i}`);
+    this.setState ({ page: i });
+    }
   }
 
   getCharacters = URL => {
@@ -38,8 +58,8 @@ class App extends Component {
       <div className="App">
         <h1 className="Header">React Wars</h1>
         <div className="buttons">
-            <button onClick={() => this.getCharacters('https://swapi.co/api/people/')} className="left">←</button>
-            <button onClick={() => this.getCharacters("https://swapi.co/api/people/?page=2")}>→</button>
+            <button onClick={this.previous} className="left">←</button>
+            <button onClick={this.next}>→</button>
         </div>
         <div className="characterContainer">
           <CharacterTemplate starwarsChars={this.state.starwarsChars} />

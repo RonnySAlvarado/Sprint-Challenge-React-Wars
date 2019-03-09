@@ -1,0 +1,18 @@
+.characterContainer {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.characterCard {
+    border: 1px solid black;
+    background-image: url("http://www.storywarren.com/wp-content/uploads/2016/09/space-1.jpg");
+    width: 400px;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+
+.characterCard h2 {
+    color: yellow;
+}

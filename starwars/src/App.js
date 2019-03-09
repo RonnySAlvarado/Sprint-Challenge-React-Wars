@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      starwarsChars: []
+      starwarsChars: [],
     };
   }
 
@@ -25,6 +25,7 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
+        console.log(data);
         this.setState({ starwarsChars: data.results });
       })
       .catch(err => {
@@ -36,6 +37,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <div className="buttons">
+            <button onClick={() => this.getCharacters('https://swapi.co/api/people/')} className="left">←</button>
+            <button onClick={() => this.getCharacters("https://swapi.co/api/people/?page=2")}>→</button>
+        </div>
         <div className="characterContainer">
           <CharacterTemplate starwarsChars={this.state.starwarsChars} />
         </div>
